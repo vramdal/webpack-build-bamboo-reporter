@@ -1,0 +1,26 @@
+{
+  "name": "webpack-build-bamboo-reporter",
+  "version": "0.1.0",
+  "description": "Creates a Bamboo-compatible report file from a Webpack build report",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vramdal/webpack-build-bamboo-reporter.git"
+  },
+  "keywords": [
+    "webpack",
+    "bamboo"
+  ],
+  "author": "Vidar Skauge Ramdal",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/vramdal/webpack-build-bamboo-reporter/issues"
+  },
+  "homepage": "https://github.com/vramdal/webpack-build-bamboo-reporter#readme",
+  "dependencies": {
+    "jsonfile": "^2.3.1"
+  }
+}

@@ -1,5 +1,4 @@
 var spawn = require('child_process').spawn;
-var JSONStream = require('JSONStream');
 var fs = require("fs");
 var jsonfile = require('jsonfile');
 var webpackOutputJsonFilename = "webpack-output.json";

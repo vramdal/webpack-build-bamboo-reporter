@@ -6,9 +6,13 @@ var reportFileName = "webpack-bamboo-report.json";
 
 console.log("Creating " + webpackOutputJsonFilename);
 const tempWritable = fs.createWriteStream(webpackOutputJsonFilename);
-console.log("Running webpack --json -p");
+var arguments = ['./node_modules/webpack/bin/webpack.js', '--json'];
+Array.prototype.push.apply(arguments, process.argv.slice(2));
+console.log("Running node " + arguments.join(" "));
+
 try {
-    var child = spawn('node', ['./node_modules/webpack/bin/webpack.js', '--json', '-p']);
+    var child = spawn('node', arguments);
+    console.log("Child process PID: " + child.pid);
     child.stdout.on('data', function (data) {
         try {
             tempWritable.write(data);
@@ -16,8 +20,17 @@ try {
             console.error(e);
         }
     });
+    child.stderr.on('data', function(data) {
+        console.log(data);
+    });
     child.on("error", function(error) {
         console.error(error);
+    });
+    child.on("message", function(message) {
+        console.info(message);
+    });
+    child.on("exit", function(code, signal) {
+        console.info("Child process exited with code " + code + ", signal " + signal);
     });
     child.on('close', function (code) {
         console.log("Reading " + webpackOutputJsonFilename);
@@ -56,5 +69,5 @@ try {
         });
     });
 } catch (e) {
-    log.erro(e);
+    console.error(e);
 }
